@@ -1,1 +1,1 @@
-This repo the materials needed to teach Programming and Algorithms 1. The class slides and an assignment with answers is provided.
+This repo contains the materials needed to teach Programming and Algorithms 1. The class slides and and assignment with answers are provided.
