@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h3>List exercise 1 solution</h3>
+        <pre class="brush: python">
+numbers = [4, 2, 7, 9, 4]
+print("numbers is", numbers)
+print("numbers[0] is", numbers[0])
+print("numbers[3] is", numbers[3])
+print(numbers[0], "plus", numbers[3], "is", numbers[0] + numbers[3])
+        </pre>
+    </section>
+
+    <section>
+        <h3>List exercise 2 solution</h3>
+        <pre class="brush: python">
+numbers = [4,2,7,9,4]
+print("numbers is", numbers)
+index = int(input("Enter an index: "))
+print("numbers[", index,"] is", numbers[index])
+        </pre>
+    </section>
+
+    <section>
+        <h3>List exercise 3 solution</h3>
+        <pre class="brush: python">
+numbers = [3, 6, 1, 4, 9]
+sum = 0
+stop_index = int(input("Enter an integer: ")) + 1
+for index in range(0, stop_index, 1):
+    sum += numbers[index]
+print("sum is", sum)
+        </pre>
+    </section>
+
+    <section>
+        <h3>List exercise 4 solution</h3>
+        <pre class="brush: python">
+numbers = []
+sum = 0
+num_inputs = 0
+
+while num_inputs < 5:
+    number = int(input("Enter an integer: "))
+    numbers.append(number)
+    num_inputs += 1
+
+for index, number in enumerate(numbers):
+    if number < 10:
+        numbers[index] = 0
+print(numbers)
+        </pre>
+    </section>
+
+    <section>
+        <h3>List exercise 5 solution</h3>
+        <pre class="brush: python">
+numbers = [4,2,7,9,3]
+found = False  # we haven't found the number yet
+user_number = int(input("Enter an integer: "))
+for number in numbers:
+    if number == user_number:
+        found = True
+        break
+if found:
+    print(user_number, "is in", numbers)
+else:
+    print(user_number, "is not in", numbers)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>List exercise 5 alternative solution</h3>
+        <pre class="brush: python">
+numbers = [4,2,7,9,3]
+user_number = int(input("Enter an integer: "))
+if user_number in numbers:
+    print(user_number, "is in", numbers)
+else:
+    print(user_number, "is not in", numbers)
+        </pre>
+        <ul>
+            <li>using a for loop was mostly for learning purposes</li>
+            <li>a more Pythonic follow follow</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>String exercise 1 solution</h3>
+         <pre class="brush: python">
+s = "happy"
+s = "z" + s[1:]
+print(s)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 2 solution</h3>
+         <pre class="brush: python">
+word = "Mississippi"
+s_counter = 0
+for letter in word:
+    if letter == 's':
+        s_counter += 1
+print("The number of times the letter s occurs in Mississippi is", s_counter)
+
+# The standard library way
+print(word.count('s'))
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 3 solution</h3>
+         <pre class="brush: python">
+a = "10001101"
+b = "11001010"
+differences = 0
+for index in range(0,7):
+    if a[index] == b[index]:
+        differences += 1
+print("There are", differences, "differences between", a, "and", b)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 4 solution</h3>
+         <pre class="brush: python">
+word = "Mississippi"
+new_word = ""
+for letter in word:
+    if letter == 'i':
+        new_word += 'a'
+    else:
+        new_word += letter
+print("new_word is", new_word)
+
+# The standard library way
+print(word.replace('i', 'a'))
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 5 solution</h3>
+         <pre class="brush: python">
+import random
+random_word = ""
+for i in range(0, 8):
+    rand_int = random.randint(97, 123)
+    random_word += chr(rand_int)
+print(random_word)
+if 'e' in random_word:
+    print("e is in", random_word)
+else:
+    print("e is not in", random_word)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>List exercise 6 solution</h3>
+        <pre class="brush: python">
+numbers = []
+sum = 0
+num_inputs = 0
+
+while num_inputs < 5:
+    number = int(input("Enter an integer: "))
+    numbers.append(number)
+    num_inputs += 1
+
+for index, number in enumerate(numbers):
+    if number < 10:
+        numbers[index] = 0
+print(numbers)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 1 solution</h3>
+         <pre class="brush: python">
+s = "happy"
+s = "z" + s[1:]
+print(s)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 2 solution</h3>
+         <pre class="brush: python">
+word = "Mississippi"
+s_counter = 0
+for letter in word:
+    if letter == 's':
+        s_counter += 1
+print("The number of times the letter s occurs in Mississippi is", s_counter)
+
+# The standard library way
+print(word.count('s'))
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 3 solution</h3>
+         <pre class="brush: python">
+a = "10001101"
+b = "11001010"
+differences = 0
+for index in range(0,7):
+    if a[index] == b[index]:
+        differences += 1
+print("There are", differences, "differences between", a, "and", b)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 4 solution</h3>
+         <pre class="brush: python">
+word = "Mississippi"
+new_word = ""
+for letter in word:
+    if letter == 'i':
+        new_word += 'a'
+    else:
+        new_word += letter
+print("new_word is", new_word)
+
+# The standard library way
+print(word.replace('i', 'a'))
+        </pre>
+    </section>
+    
+    <section>
+        <h3>String exercise 5 solution</h3>
+         <pre class="brush: python">
+import random
+random_word = ""
+for i in range(0, 8):
+    rand_int = random.randint(97, 123)
+    random_word += chr(rand_int)
+print(random_word)
+if 'e' in random_word:
+    print("e is in", random_word)
+else:
+    print("e is not in", random_word)
+        </pre>
+    </section>
+    
+    <section id="more-exercises">
+        <h3>If you've finished everything</h3>
+        <ul>
+            <li><a href="http://projecteuler.net/problems">number-based problems for computing</a></li>
+            <li><a href="http://rosalind.info/problems/list-view/">string-based problems for computing</a></li>
+        </ul>
+    </section>
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>

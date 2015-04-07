@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h1>Computer Programming in Python</h1>
+        <p><small>by Colm Sloan</small></p>
+    </section>
+    
+    <section id="table-of-contents">
+        <h3>Table of contents</h3>
+        <ol>
+            <li><a href="#/counting">Counting Occurrences</a></li>
+            <li><a href="#/totaling">Totaling</a></li>
+            <li><a href="#/searching">Searching</a></li>
+            <li><a href="#/swapping">Swapping</a></li>
+            <li><a href="#/min-max">Minimum and Maximum</a></li>
+            <li><a href="#/testing">Testing</a></li>
+            <li><a href="#/more-exercises">More Exercises</a></li>
+        </ol>
+    </section>
+    
+    <section id="counting">
+        <h3>Counting Occurrences</h3>
+        <ul>
+            <li>count the number of times a particular boolean expression is true</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Counting Occurrences</h3>
+        <pre class="brush: python">
+count_o = 0
+sentence = "To be or not to be?"
+for letter in sentence:
+    if letter == "o":
+        count_o += 1
+print("There were", count_o, "o's in the sentence")  # 4
+        </pre>
+        <ul>
+            <li>count each occurrence of the letter "o"</li>
+        </ul>
+    </section>
+    
+        <section>
+        <h3>Counting Occurrences</h3>
+        <pre class="brush: python">
+count_odd = 0
+numbers = [6, 9, 8, 2, 3]
+for n in numbers:
+    if n % 2 == 1:
+        count_odd += 1
+print("There were", count_odd, "odd numbers in the list of numbers")  # 2
+        </pre>
+        <ul>
+            <li>count each occurrence of an odd number</li>
+        </ul>
+    </section>
+    
+    <section id="totaling">
+        <h3>Totaling</h3>
+        <ul>
+            <li>count the total (or sum) of a list of numbers</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Totaling</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+i = 0
+total = 0
+while i < len(numbers):
+    total += numbers[i]
+print("The total is", total)
+        </pre>
+        <ul>
+            <li>calculate list sum using variable index</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Totaling</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+total = 0
+for number in numbers:
+    total += number
+print("The total is", total)
+        </pre>
+        <ul>
+            <li>or use a for loop</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Totaling</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+total = sum(numbers)
+print("The total is", total)
+        </pre>
+        <ul>
+            <li>or use the built-in <i>sum</i> function</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Totaling</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+sum = 0
+for number in numbers:
+    sum += number
+print("The sum is", sum)
+print("The sum is", sum(numbers))  # crash - 'int' object is not capable
+        </pre>
+        <ul>
+            <li>don't name any variable the same name as a function</li>
+        </ul>
+    </section>
+    
+    <section id="searching">
+        <h3>Searching</h3>
+        <ul>
+            <li>know of a particular element exists in a set</li>
+            <li>keep a list of all matches</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Searching</h3>
+        <pre class="brush: python">
+# find out if element exists in list
+numbers = [3, 7, 4, 9, 2]
+search_term = 4
+found = False
+for n in numbers:
+    if n == search_term:
+        found = True
+        break
+if found:
+    print(search_term, "is in", numbers)
+else:
+    print(search_term, "is not in", numbers)
+        </pre>
+        <ul>
+            <li>assume the search term isn't in the list</li>
+            <li>mark that the term is in the list</li>
+            <li>stop searching</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Searching</h3>
+        <pre class="brush: python">
+# find out if element exists in list
+numbers = [3, 7, 4, 9, 2]
+search_term = 4
+if search_term in numbers:
+    print(search_term, "is in", numbers)
+else:
+    print(search_term, "is not in", numbers)
+        </pre>
+        <ul>
+            <li>or the more Pythonic way</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Searching</h3>
+        <pre class="brush: python">
+# find all instances of element in list
+numbers = [4, 7, 4, 9, 2, 3, 6, 9, 4]
+search_term = 4
+matches = []
+for i in range(0, len(numbers), 1):
+    if numbers[i] == search_term:
+        matches.append(i)
+
+print(search_term, "is in", numbers, len(matches), "time(s)")
+print("Matching indices:", matches)
+        </pre>
+        <ul>
+            <li>keep a list of the location of every match</li>
+        </ul>
+    </section>
+    
+    <section id="swapping">
+        <h3>Swapping</h3>
+        <ul>
+            <li>swap the value of one variable with another</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Swapping</h3>
+        <pre class="brush: python">
+# initialize
+x = 2
+y = 3
+print(x, "and", y)  # 2 and 3
+
+# swap
+temporary = x
+x = y
+y = temporary
+print(x, "and", y)  # 3 and 2
+        </pre>
+        <ul>
+            <li>most simple case</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Swapping</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+print("Before swap:", numbers)  # [3, 7, 4, 9, 2]
+
+# swap the first and second numbers
+temporary = numbers[0]
+numbers[0] = numbers[1]
+numbers[1] = temporary
+print("After swap:", numbers)  # [7, 3, 4, 9, 2]
+        </pre>
+        <ul>
+            <li>swapping within a list</li>
+        </ul>
+    </section>
+    
+    <section id="min-max">
+        <h3>Minimum and maximum</h3>
+        <ul>
+            <li>find the highest and lowest value in a set</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Minimum and maximum</h3>
+        <pre class="brush: python">
+# find minimum
+numbers = [3, 7, 4, 9, 2]
+lowest = 9999
+for n in numbers:
+    if n < lowest:
+        lowest = n
+print("The lowest number in", numbers, "is", lowest)
+        </pre>
+        <ul>
+            <li>initialize the lowest number found as some super high number</li>
+            <li>this guarantees any number in the list will be lower than it</li>
+            <li>update running lowest when a smaller number is found</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Minimum and maximum</h3>
+        <pre class="brush: python">
+# find longest
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+longest_word = ""
+for animal in animals:
+    if len(animal) > len(longest_word):
+        longest_word = animal
+print("The lowest word in", animals, "is", longest_word)
+        </pre>
+        <ul>
+            <li>initialize the lowest number found as some super high number</li>
+            <li>this guarantees any number in the list will be lower than it</li>
+            <li>update running lowest when a smaller number is found</li>
+        </ul>
+    </section>
+    
+    <section id="testing">
+        <h3>Testing</h3>
+        <ul>
+            <li>make sure that functions work as expected</li>
+            <li>try to find inputs that break your function</li>
+            <li>alter function so it no longer breaks</li>
+            <li>rerun to make sure the changes didn't break anything else</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Testing</h3>
+        <pre class="brush: python">
+def are_equal(name, first, second):
+    """Tests if two inputs are equal. Requires test name, first value to compare,
+    and second value to compare.
+    e.g. are_equal('To integer from string', int('5'), 5)
+    """
+    if first == second:
+        print("Pass:", name)
+    else:
+        print("Fail:", name, ":: Expected:", second, ":: Received:", first)
+        </pre>
+        <ul>
+            <li>simple method to test if two inputs are equal</li>
+            <li>save as "test.py" for use as a module</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Testing</h3>
+        <pre class="brush: python">
+import test
+        
+def letter_to_gender(letter):
+    if letter == "m":
+        return "male"
+    else:
+        return "female"
+        
+if __name__ == "__main__":
+    test.are_equal("Male", letter_to_gender("m"), "male")                # Pass
+    test.are_equal("Female", letter_to_gender("f"), "female")            # Pass
+    test.are_equal("Other Letter", letter_to_gender("z"), "invalid")     # Fail
+        </pre>
+        <ul>
+            <li>let's see if the function does what we want</li>
+            <li>fails one</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Testing</h3>
+        <pre class="brush: python">
+import test
+
+def letter_to_gender(letter):
+    if letter == "m":
+        return "male"
+    elif letter == "f":
+        return "female"
+    else:
+        return "invalid"
+        
+if __name__ == "__main__":
+    test.are_equal("Male", letter_to_gender("m"), "male")                # Pass
+    test.are_equal("Female", letter_to_gender("f"), "female")            # Pass
+    test.are_equal("Other Letter", letter_to_gender("z"), "invalid")     # Pass
+    test.are_equal("Word", letter_to_gender("hello"), "invalid")         # Pass
+    test.are_equal("Numbers", letter_to_gender("39536"), "invalid")      # Pass
+        </pre>
+        <ul>
+            <li>better but what else could a use realistically enter that would react badly?</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Testing</h3>
+        <pre class="brush: python">
+import test
+
+def letter_to_gender(letter):
+    if letter == "m":
+        return "male"
+    elif letter == "f":
+        return "female"
+    else:
+        return "invalid"
+        
+if __name__ == "__main__":
+    test.are_equal("Lowercase Male", letter_to_gender("m"), "male")      # Pass
+    test.are_equal("Lowercase Female", letter_to_gender("f"), "female")  # Pass
+    test.are_equal("Other Letter", letter_to_gender("z"), "invalid")     # Pass
+    test.are_equal("Word", letter_to_gender("hello"), "invalid")         # Pass
+    test.are_equal("Numbers", letter_to_gender("39536"), "invalid")      # Pass
+    test.are_equal("Uppercase Male", letter_to_gender("M"), "male")      # Fail
+    test.are_equal("Uppercase Female", letter_to_gender("F"), "female")  # Fail
+        </pre>
+        <ul>
+            <li>capital letters seems reasonable</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Testing</h3>
+        <pre class="brush: python">
+import test
+
+def letter_to_gender(letter):
+    if letter == "M":
+        return "male"
+    elif letter == "F":
+        return "female"
+    else:
+        return "invalid"
+        
+if __name__ == "__main__":
+    test.are_equal("Lowercase Male", letter_to_gender("m"), "male")      # Fail
+    test.are_equal("Lowercase Female", letter_to_gender("f"), "female")  # Fail
+    test.are_equal("Other Letter", letter_to_gender("z"), "invalid")     # Pass
+    test.are_equal("Word", letter_to_gender("hello"), "invalid")         # Pass
+    test.are_equal("Numbers", letter_to_gender("39536"), "invalid")      # Pass
+    test.are_equal("Uppercase Male", letter_to_gender("M"), "male")      # Pass
+    test.are_equal("Uppercase Female", letter_to_gender("F"), "female")  # Pass
+        </pre>
+        <ul>
+            <li>now the lowercase letters break</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Testing</h3>
+        <pre class="brush: python">
+import test
+
+def letter_to_gender(letter):
+    if letter == "m" or letter == "M":
+        return "male"
+    elif letter == "f" or letter == "F":
+        return "female"
+    else:
+        return "invalid"
+        
+if __name__ == "__main__":
+    test.are_equal("Lowercase Male", letter_to_gender("m"), "male")      # Pass
+    test.are_equal("Lowercase Female", letter_to_gender("f"), "female")  # Pass
+    test.are_equal("Other Letter", letter_to_gender("z"), "invalid")     # Pass
+    test.are_equal("Word", letter_to_gender("hello"), "invalid")         # Pass
+    test.are_equal("Numbers", letter_to_gender("39536"), "invalid")      # Pass
+    test.are_equal("Uppercase Male", letter_to_gender("M"), "male")      # Pass
+    test.are_equal("Uppercase Female", letter_to_gender("F"), "female")  # Pass
+        </pre>
+        <ul>
+            <li>now the function is more robust</li>
+        </ul>
+    </section>
+
+    <section id="alg-exercises">
+        <h3>Algorithm exercise 1</h3>
+        <div class="exercize_text">
+            Write a function to count the number of words in a sentence entered by the user.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 2</h3>
+        <div class="exercize_text">
+            Write tests to make sure your function works for a normal sentence and a sentence containing no characters.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 3</h3>
+        <div class="exercize_text">
+            Write a function that counts the number of times the letter "e" occurs in a list of strings, e.g. ["ape", "bison", "crocodile"] => 2. Write appropriate tests.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 4</h3>
+        <div class="exercize_text">
+            Write a function that takes a list of numbers and outputs the product of all of those numbers, e.g. [2, 3, 4] => 2 * 3 * 4. Wrote appropriate tests. Include test for the empty list as an argument.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 5</h3>
+        <div class="exercize_text">
+            Write a function that takes two lists and returns the list with the highest total. Don't use the built-in <i>sum</i> function. Write appropriate tests.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 6</h3>
+        <div class="exercize_text">
+            Write a function that takes a list of strings and a search string and outputs if the search string is in the list. Write appropriate tests.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 7</h3>
+        <div class="exercize_text">
+            Write a function that takes a list and two indices that swaps the values at those indices in the list, e.g. swap(["ape", "bison", "crocodile"], 0, 2) => ["crocodile", "bison", "ape"].
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 8</h3>
+        <div class="exercize_text">
+            Write a function that takes two lists of numbers and returns the list containing the highest number. Don't use the built-in <i>max</i>function. Write appropriate tests.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Algorithm exercise 9</h3>
+        <div class="exercize_text">
+            Write a function that takes a list of strings and swaps the positions of the shortest word with the longest word.
+        </div>
+    </section>
+                
+    <section id="more-exercises">
+        <h3>If you've finished everything</h3>
+        <ul>
+            <li><a href="http://projecteuler.net/problems">number-based problems for computing</a></li>
+            <li><a href="http://rosalind.info/problems/list-view/">string-based problems for computing</a></li>
+        </ul>
+    </section>
+    
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

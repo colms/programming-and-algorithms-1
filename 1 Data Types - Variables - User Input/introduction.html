@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h1>Computer Programming in Python</h1>
+        <p><small>by Colm Sloan</small></p>
+    </section>
+    
+    <section id="table-of-contents">
+        <h3>Table of contents</h3>
+        <ol>
+            <li><a href="#/repl">The REPL</a></li>
+            <li><a href="#/numbers">Numbers and Arithmetic Operators</a></li>
+            <li><a href="#/booleans">Booleans and Relational Operators</a></li>
+            <li><a href="#/strings">Strings and String Operators</a></li>
+            <li><a href="#/variables">Variables and the Assignment Operator</a></li>
+            <li><a href="#/first-script">Our first script</a></li>
+            <li><a href="#/print">The print function</a></li>
+            <li><a href="#/comments">Comments</a></li>
+            <li><a href="#/user-input">Handling user input</a></li>
+            <li><a href="#/casting">Casting</a></li>
+            <li><a href="#/io-exercises">Input/output exercises</a></li>
+        </ol>
+    </section>
+
+    <section>
+        <h3>What is a program?</h3>
+        <blockquote>
+            A sequence of instructions that a computer can interpret and execute.
+            <cite>WordNet, Princeton</cite>
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>What is a programming language?</h3>
+        <blockquote>
+            A programming language designed to facilitate the writing of computer programs.
+            <cite>Collins English Dictionary</cite>
+        </blockquote>
+    </section>
+
+    <section>
+        <h3>What is source code?</h3>
+        <blockquote>
+            Any collection of computer instructions (possibly with comments) written using some human-readable computer language, usually as text.
+            <cite>Wikipedia</cite>
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Interpreter</h3>
+        <ul>
+            <li>takes source code and executes it on the fly</li>
+            <li>no compile time can mean faster development</li>
+            <li>usually slower than compiled executables</li>
+            <li>Python, Ruby, Lua are interpreted languages</li>
+        </ul>
+        <figure>
+            <img src="./images/interpreter.png" />
+            <figcaption>source: differencebetween.info</figcaption>
+        </figure>
+    </section>
+    
+    <section>
+        <h3>Before we begin</h3>
+        <h4>source control</h4>
+        <ul>
+            <li>git</li>
+            <li>code versioning software</li>
+            <li>bitbucket.com</li>
+        </ul>
+        <h4>style guide</h4>
+        <ul>
+            <li>PEP 8 style guide</li>
+            <li>http://legacy.python.org/dev/peps/pep-0008/</li>
+			<li>check for style guide violations - http://pep8online.com</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Python</h3>
+        <ul>
+			<li>procedural</li>
+            <li>imperative - stateful</li>
+            <li>doesn't require manual memory management</li>
+            <li>structured - not just jumps</li>
+            <li>case and whitespace sensitive</li>
+            <li>battle tested - 1991</li>
+            <li>beloved language - has won people's choice awards</li>
+            <li>currently 8th most popular language (TIOBE index)</li>
+        </ul>
+        <img src="./images/python_logo.png" />
+    </section>
+    
+    <section id="repl">
+        <h3>Python REPL</h3>
+        <ul>
+            <li>Read, Evaluate, Print, Loop</li>
+            <li>start by running Python executable</li>
+            <li>Python executable is normally located 'C:/Python33/python.exe'</li>
+			<li>end by entering: exit()</li>
+        </ul>
+    </section>
+
+	<section id="numbers">
+        <h3>Numbers</h3>
+        <table>
+            <tr><th>type</th><th>description</th><th>examples</th></tr>
+            <tr><td style="padding-right: 2em">int</td><td>integer (whole number)</td><td>62, -3</td></tr>
+            <tr><td>float</td><td>real number (all numbers)</td><td>5.9, -0.004</td></tr>
+        </table>
+        <br />
+        <ul>
+            <li>the arithmetic data types</li>
+        </ul>
+    </section>
+    
+	<section>
+        <h3>Operations and operators</h3>
+        <ul>
+          <li>programming is a sequence of operations performed on data</li>
+          <li>an operator in Python is a symbol associated with an operation</li>
+          <li>infix notation: x operator y, e.g. 2 + 3</li>
+          <li>examples of numeric operators</li>
+        </ul>
+        <table>
+            <tr><th>symbol</th><th>name</th></tr>
+            <tr><td style="padding-right: 4em">+</td><td>plus</td></tr>
+            <tr><td>-</td><td>minus</td></tr>
+            <tr><td>*</td><td>multiply</td></tr>
+            <tr><td>/</td><td>divide</td></tr>
+            <tr><td>**</td><td>exponent</td></tr>
+            <tr><td>%</td><td>remainder/modulo</td></tr>
+        </table>
+    </section>
+
+    <section id="arithmetic-operators">
+        <h3>Arithmetic operators</h3>
+        <pre class="brush: python">
+2 + 3    # 5
+6 - 1.5  # 4.5
+5 * 9    # 45
+8 / 4    # 2
+7 ** 2   # 49
+10 % 3   # 1
+        </pre>
+        <ul>
+            <li>values calculated left to right</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Arithmetic operators</h3>
+        <pre class="brush: python">
+3 * 5 + 2    # 17
+3 + 5 * 2    # 13
+(3 + 5) * 2  # 16
+        </pre>
+        <ul>
+            <li>follows the BOMDAS rules</li>
+			<ul>
+            	<li>B - brackets</li>
+            	<li>O - operations</li>
+           		<li>M - multiply</li>
+           		<li>D - divide</li>
+           		<li>A - add</li>
+            	<li>S - subtract</li>
+			</ul>
+        </ul>
+    </section>
+
+    <section id="booleans">
+        <h3>Booleans</h3>
+        <ul>
+            <li>the logical data type</li>
+            <li>a boolean can only have a value of True or False</li>
+            <li>True and False must start with capital letters</li>
+            <li>remember, Python is case sensitive</li>
+        </ul>
+    </section>
+    
+    <section id="relational-operators">
+        <h3>Relational operators</h3>
+        <ul>
+            <li>a relational operator tests whether a particular relationship is true</li>
+            <li>e.g. 5 > 3 is True but 5 < 3 is False</li>
+            <li>Python has the following relational operators</li>
+        </ul>
+        <table>
+            <tr><th>symbol</th><th>name</th></tr>
+            <tr><td style="padding-right: 4em">&lt</td><td>less than</td></tr>
+            <tr><td>&gt</td><td>greater than</td></tr>
+            <tr><td>&lt=</td><td>less than or equal to</td></tr>
+            <tr><td>&gt=</td><td>greater than or equal to</td></tr>
+            <tr><td>==</td><td>equal to</td></tr>
+            <tr><td>!=</td><td>not equal to</td></tr>
+        </table>
+    </section>
+    
+    <section>
+        <h3>Relational operators</h3>
+        <pre class="brush: python">
+2 > 3   # False
+5 < 3   # False
+7 >= 1  # True
+7 >= 7  # True
+9 <= 8  # False
+4 != 5  # True
+6 == 6  # True
+        </pre>
+        <ul>
+            <li>these Boolean expressions use relational operators</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>Relational operators</h3>
+        <pre class="brush: python">
+4.0 > 1.6           # True
+5 < 3.7             # False
+"happy" != "sad"    # True
+"money" == "money"  # True
+        </pre>
+        <ul>
+            <li>other data types can use relational operators too</li>
+        </ul>
+    </section>
+
+    <section id="strings">
+        <h3>Strings</h3>
+        <ul>
+            <li>the character data type</li>
+            <li>a sequence of characters</li>
+            <li>enclosed between apostrophes or double quotes</li>
+            <li>for example, 'Hello there!', "8353+@4db3"</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>String operators</h3>
+        <pre class="brush: python">
+"bat" + "man"      # "batman"
+"Thank you! " * 3  # "Thank you! Thank you! Thank you! "
+        </pre>
+    </section>
+
+<section id="variables">
+        <h3>What is a variable?</h3>
+        <blockquote>
+            Something able to change or be adapted.
+            <cite>Oxford Dictionary</cite>
+        </blockquote>
+        <ul>
+            <li>a symbol associated with a value</li>
+            <li>data types of variables</li>
+            <li>in Python, a data type and symbol (name) associated with a value held in an address in memory</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>Variable naming</h3>
+        <ul>
+            <li>style guide specifies variable should be lower case and use underscores to separate words in name</li>
+            <li>variable names must start with a letter</li>
+            <li>a variable <i>2v</i> would be illegal</li>
+			<li>symbols such as +:*=., cannot be part of a variable name</li>
+			<li>a language keyword cannot be used as a variable name</li>
+            <li>valid variable names: <i>age</i>, <i>num_employees</i>, <i>v2</i>, <i>x</i>
+			<li>variable names are case sensitive</li>
+            <li>variable should have meaningful names</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>Assignment operator</h3>
+        <pre class="brush: python">
+my_variable = 3
+        </pre>
+        <ul>
+<li>declare and initize variable</li>
+            <li><i>declare</i> is to make known the existence of something e.g. a variable</li>
+            <li><i>initialize</i> means to give an initial value</li>
+            <li><i>my_variable</i> is declared and initialized to a value of 3</li>
+            <li>associates the name "my_variable" with the value 3</li>
+            <li>association made using assignment operator (=)</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Assignment operator</h3>
+        <pre class="brush: python">
+a = 3
+b = 2 + 3
+c = b - 1
+d = a * c
+x = 5 < 4
+        </pre>
+        <ul>
+            <li>these variables are assigned the result of an expression</li>
+            <li>an <i>expression</i> is a anything that returns a value</li>
+            <li>variable hold values that can be accessed later</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>naming exercises</h3>
+        <div class="exercize_text">
+            Which of the following are valid Python variable names?
+        </div>
+		<pre class="brush: python">
+shots_on_target
+price$
+engine.cc
+AGE
+constraint-based
+int
+t
+if
+colm's_birthday
+        </pre>
+    </section>
+
+    <section>
+        <h3>Moving away from the REPL</h3>
+        <ul>
+            <li>the REPL is only useful for very small programs</li>
+            <li>for bigger programs, we need a text editor to build scripts</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>Notepad++</h3>
+        <img src="./images/notepad_pp_logo.png" />
+        <img src="./images/notepad_pp_python.png" />
+    </section>
+
+	<section id="our-first-script">
+        <h3>Our first script</h3>
+        Write the following code into your Notepad++ file and save it as first_script.py in a newly created folder named after today's date.
+        <pre class="brush: python">
+print(3)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Our first script</h3>
+        <ol>
+            <li>Click on the Windows "start" button and type "cmd" to open a new command console.</li>
+            <li>Use the "cd" command to "change directory" to the directory in which first_script.py was saved.</li>
+            <li>Type "dir" to see the contents of the directory to be sure the file is present.</li>
+            <li>Enter "c:/python33/python.exe first_script.py" to run the file. (We assume Python is in the class path.)</li>
+        </ol>
+    </section>
+    
+    <section>
+        <h3>Our first script</h3>
+        <pre class="brush: python">
+print(3)
+        </pre>
+        <ul>
+            <li>the Python script was executed by the Python interpreter</li>
+        </ul>
+    </section>
+
+	<section id="print">
+        <h3>print</h3>
+        <pre class="brush: python">
+print(3)
+        </pre>
+        <ul>
+            <li>a function for outputting values to the command console or files</li>
+            <li>function name immediately followed by parentheses ()</li>
+            <li>function input inside the parentheses</li>
+			<li>more on functions later</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>print</h3>
+        <pre class="brush: python">
+print(3)
+print(5)
+print(41)
+        </pre>
+        <ul>
+			<li>the file is interpretted from top to bottom, left to right</li>
+            <li>there can be multiple lines of code in the executed file</li>
+			<li>print and other function can be executed multiple times</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>print</h3>
+        <pre class="brush: python">
+print("Hello, World!")
+        </pre>
+        <ul>
+			<li>we can print strings of characters a.k.a. strings</li>
+        </ul>
+    </section>
+    
+	<section>
+        <h3>print</h3>
+        <pre class="brush: python">
+my_variable = 3
+print(my_variable)
+        </pre>
+        <ul>
+			<li>we can print variables</li>
+            <li>pass the variable as input to the print function</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>print</h3>
+        <pre class="brush: python">
+my_variable = 3
+print("The value of my variable is", my_variable)
+        </pre>
+        <ul>
+			<li>we can print strings and variables together</li>
+            <li>the print function can accept many inputs</li>
+            <li>inputs are separated by commas</li>
+            <li>the variable is appended to the string</li>
+            <li>note that a space is implicitly added before the variable</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>print</h3>
+        <pre class="brush: python">
+x = 3
+y = 4
+print("The value of x plus y is", x + y)
+        </pre>
+        <ul>
+			<li>we can print values calculated within the print input</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>printing multiple variables</h3>
+        <pre class="brush: python">
+some_variable = 3
+some_other_variable = 4
+
+print("Some variable is", some_variable, "and the other is", some_other_variable)
+        </pre>
+        <ul>
+            <li>by default, the print function prints a new line</li>
+            <li>so we can print everything together or on separate lines</li>
+        </ul>
+    </section>
+    
+    <section id="comments">
+        <h3>Comments</h3>
+        <pre class="brush: python">
+# Author:   Colm Sloan
+# Purpose:  Print and comment tutorial
+# Date:     yyyy-mm-dd
+# Lincense: MIT
+
+print("Hello, World!")  # prints to console
+print("Good bye.")  # prints more
+        </pre>
+        <ul>
+            <li>a # symbol causes the interpreter to ignore remainder of line</li>
+            <li>ideally, each file should have a comment at the beginning explaining the purpose of the file</li>
+            <li>these comment usually include the license, author and date of work</li>
+            <li>comments are also added to improve the understanding of the code</li>
+			<li>comments should explain why and how a particular approach was taken</li>
+<li>comments should not say what code is doing if it is obvious</li>
+        </ul>
+    </section>	
+    
+    <section id="user-input">
+        <h3>User input</h3>
+        <pre class="brush: python">
+user_input = input("Enter anything and press enter: ")
+print("The user input is", user_input)
+        </pre>
+        <ul>
+            <li>we can take user input from the console</li>
+            <li><i>input</i> is a function, like <i>print</i></li>
+            <li>the <i>input</i> function takes a value to be displayed in the console and waits for user input</li>
+			<li>the <i>input</i> returns a string entered by the user</li>
+        </ul>
+    </section>
+
+	<section>
+        <h3>User input</h3>
+        <pre class="brush: python">
+user_word = input("Enter a word: ")
+super_word = "super " + user_word
+print("The super version of the word is", super_word)
+        </pre>
+        <ul>
+            <li>add two strings together (concatenates strings)</li>
+        </ul>
+    </section>
+    
+    <section id="user-input">
+        <h3>User input</h3>
+        <pre class="brush: python">
+x = input("Enter an integer: ")
+y = x * 5
+print("input * 5 is", y)
+        </pre>
+        <ul>
+            <li>what will this give us?</li>
+        </ul>
+    </section>
+
+    <section id="casting">
+        <h3>Cast user input</h3>
+        <pre class="brush: python">
+string_user_input = input("Enter an integer: ")
+integer_user_input = int(string_user_input)
+z = integer_user_input * 5
+print("input * 5 is", z)
+        </pre>
+        <ul>
+			<li>the <i>input</i> function returns a string</li>
+            <li><i>int</i> is a function that accepts one string value and returns the integer equivalent
+			<li>the process of changing a value from one data type to another is called "casting"</li>
+            <li>the function name is similar to the data type to which the variable is being cast</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Cast user input</h3>
+        <pre class="brush: python">
+# take input and cast to int on one line
+x = int(input("Enter the first number: "))
+
+y = x + 10
+print("The sum is", y)
+        </pre>
+        <ul>
+            <li>multiple functions can be called on the same line</li>
+			<li>the innermost parentheses are evaluated first</li>
+            <li>the output of one function is the input of the immediate outer function</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Cast user input</h3>
+        <pre class="brush: python">
+x = int(input("Enter the first integer: "))
+y = int(input("Enter the second integer: "))
+z = x + y
+print("The sum of", x, "plus", y, "is", z)
+        </pre>
+        <ul>
+            <li>we can call functions multiple times like this just as before</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Cast user input</h3>
+        <pre class="brush: python">
+# take input and cast it to float on one line
+x = float(input("Enter a real number: "))
+
+y = x + 8
+print("sum is", y)
+        </pre>
+        <ul>
+            <li><i>float</i> is a function that casts a variable to a floating point (real) number</li>
+        </ul>
+    </section>
+
+<section>
+        <h3>Cast user input</h3>
+        <pre class="brush: python">
+x = 10.0
+y = 3.0
+print(x, "divided by", y, "is", x / y)
+        </pre>
+        <ul>
+            <li>use a decimal point to indicate a number is a float</li>
+        </ul>
+    </section>
+    
+	<section id="io-exercises">
+        <h3>Input/output exercise 1</h3>
+        <div class="exercize_text">
+            Adds two and three and print the result.
+        </div>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 2</h3>
+        <div class="exercize_text">
+            Add two and three and print, "2 plus 3 equals 5", where the 5 is a variable that holds the result of adding two and three.
+        </div>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 3</h3>
+        <div class="exercize_text">
+        	Take a numeric input from the user and print the value of the input multiplied by 10.
+        </div>
+    </section>
+
+	<section>
+      <h3>Input/output exercise 4</h3>
+      <div class="exercize_text">
+        Take two numeric inputs from the user and print the value of the first minus the second.
+      </div>
+  </section>
+
+  <section>
+      <h3>Input/output exercise 5</h3>
+      <div class="exercize_text">
+          Take an integer from the user and prints True if the input is less than 6. The printed result should mention the value of the input variable, e.g. It is True that the number 4 is less than 6.
+      </div>
+  </section>
+
+	<section>
+      <h3>Input/output exercise 6</h3>
+      <div class="exercize_text">
+        Newton's second law of motion is <i>F = ma</i>, where <i>F</i> is force, <i>m</i> is mass, and <i>a</i> is acceleration. Take values for <i>m</i> and <i>a</i>from the user and print the value of <i>F</i>.
+      </div>
+  </section>
+
+	<section>
+      <h3>Input/output exercise 7</h3>
+      <div class="exercize_text">
+        Einstein's famous formula is <i>E = mc<sup>2</sup></i>. Take values for <i>m</i> from the user, give the correct constant value to <i>c</i> and print the value of <i>E</i>. Remember operator precedence.
+      </div>
+  </section>
+
+	<section>
+      <h3>Input/output exercise 8</h3>
+      <div class="exercize_text">
+        <a href="http://en.wikipedia.org/wiki/Newton's_law_of_universal_gravitation">Newton's law of gravitation</a> is shown in the wiki page. Take values for <i>m<sub>1</sub></i>, <i>m<sub>2</sub></i> and <i>r</i> from the user. Give <i>G</i> the value of the gravitational constant. Print the final value <i>F</i>.
+      </div>
+  </section>
+
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

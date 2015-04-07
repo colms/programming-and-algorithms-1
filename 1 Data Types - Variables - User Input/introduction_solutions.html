@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+	<section>
+        <h3>Input/output exercise 1</h3>
+        <pre class="brush: python">
+print(2 + 3)
+        </pre>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 2</h3>
+        <pre class="brush: python">
+sum = 2 + 3
+print(sum)
+        </pre>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 3</h3>
+        <pre class="brush: python">
+user_input = float(input("Enter a number: "))
+print(user_input * 10)
+        </pre>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 4</h3>
+        <pre class="brush: python">
+u1 = float(input("Enter a number: "))
+u2 = float(input("Enter another number: "))
+print(u1,"minus", u2, "is", u1 - u2)
+        </pre>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 5</h3>
+        <pre class="brush: python">
+user_input = int(input("Enter a number: "))
+less_than_six = user_input < 6
+print("It is", less_than_six,"that the number", user_input, "is less than 6.")
+        </pre>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 6</h3>
+        <pre class="brush: python">
+mass = float(input("Enter a value for mass: "))
+acceleration = float(input("Enter the acceleration: "))
+print("F =", mass * acceleration)
+        </pre>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 7</h3>
+        <pre class="brush: python">
+m = float(input("Enter a value for m: "))
+c = 300000000
+print("E =", m * (c ** 2))
+        </pre>
+    </section>
+
+	<section>
+        <h3>Input/output exercise 8</h3>
+        <pre class="brush: python">
+print("Gravitational force calculator")
+m1 = float(input("Enter a value for mass 1: "))
+m2 = float(input("Enter a value for mass 2: "))
+distance = float(input("Enter distance between mass 1 and mass 2: "))
+G = 0.0000000000693
+F = ((m1 * m2) / (distance ** 2)) * G
+print("F =", F)
+        </pre>
+    </section>
+
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

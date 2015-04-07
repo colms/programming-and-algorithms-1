@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h1>Computer Programming in Python</h1>
+        <p><small>by Colm Sloan</small></p>
+    </section>
+    
+	<section id="debugging">
+        <h3>Debugging</h3>
+        <blockquote>
+            Debugging is the routine process of locating and removing computer program bugs, errors or abnormalities, which is methodically handled by software programmers via debugging tools. Debugging checks, detects and corrects errors or bugs to allow proper program operation according to set specifications.
+        <cite>Techopedia</cite>
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Debugging</h3>
+        <ul>
+        	<li>interactive debugging allows the user to pause program execution</li>
+        	<li>see the values of variables during execution</li>
+        	<li>see the stack trace</li>
+        	<li><i>pdb</i> or <i>python debugger</i> is a standard library module that allows debugging</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Debugging</h3>
+        <pre class="brush: python">
+import test
+
+def swap_shortest_longest(list1):
+    minimum_length = 9999
+    maximum_length = -9999
+    index_of_shortest = None
+    index_of_longest = None
+    for index in range(0, len(list1), 1):
+        item = list1[index]
+        if len(item) < minimum_length:
+            minimum_length = len(item)
+            index_of_shortest = index
+        if len(item) > maximum_length:
+            maximum_length = len(item)
+            index_of_longest = index
+    swap(list1, index_of_shortest, index_of_longest)
+    return list1
+
+def swap(list1, index1, index2):
+    temp = list1[index1]
+    list1[index1] = list1[index1]
+    list1[index2] = temp
+    
+if __name__ == "__main__":
+    test.are_equal("first has highest",
+                   swap_shortest_longest(["ape", "bison", "crocodile"]),
+                   ["crocodile", "bison", "ape"])
+        </pre>
+        <ul>
+        	<li>let's find the bug in this code</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Debugging</h3>
+        <pre class="brush: python">
+import test
+import pdb
+
+def swap_shortest_longest(list1):
+    pdb.set_trace()
+    minimum_length = 9999
+    maximum_length = -9999
+    index_of_shortest = None
+    index_of_longest = None
+    for index in range(0, len(list1), 1):
+        item = list1[index]
+        if len(item) < minimum_length:
+            minimum_length = len(item)
+            index_of_shortest = index
+        if len(item) > maximum_length:
+            maximum_length = len(item)
+            index_of_longest = index
+    swap(list1, index_of_shortest, index_of_longest)
+    return list1
+
+def swap(list1, index1, index2):
+    temp = list1[index1]
+    list1[index1] = list1[index1]
+    list1[index2] = temp
+    
+if __name__ == "__main__":
+    test.are_equal("first has highest",
+                   swap_shortest_longest(["ape", "bison", "crocodile"]),
+                   ["crocodile", "bison", "ape"])
+        </pre>
+        <ul>
+        	<li>import <i>pdb</i> and use <i>set_trace</i> to start the trace</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Debugging</h3>
+        <pre class="brush: python">
+(Pdb) _
+        </pre>
+        <ul>
+        	<li>run the script containing your code</li>
+        	<li>execution will halt on the <i>set_trace</i> line</li>
+        	<li>only see a prompt as shown in code above</li>
+        	<li>from here, several commands can be entered</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Debugging</h3>
+        <pre class="brush: python">
+(Pdb) _
+        </pre>
+        <ul>
+        	<li><i>variable_name</i> for current value of variable</li>
+        	<li><i>h</i> for <i>help</i></li>
+        	<li><i>l</i> for <i>list</i></li>
+        	<li><i>n</i> for <i>next</i></li>
+        	<li><i>b</i> for <i>break</i></li>
+        	<li><i>c</i> for <i>continue</i></li>
+        	<li><i>s</i> for <i>step</i></li>
+        	<li><i>w</i> for <i>where</i></li>
+        	<li><i>a</i> for <i>arguments</i></li>
+        	<li><i>q</i> for <i>quit</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>help</h3>
+        <pre class="brush: python">
+(Pdb) h help
+        </pre>
+        <ul>
+        	<li><i>h</i> for <i>help</i></li>
+        	<li>print list of available commands</li>
+        	<li><i>h <b>command</b></i> prints information about a command</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>list</h3>
+        <pre class="brush: python">
+(Pdb) l
+        </pre>
+        <ul>
+        	<li><i>l</i> for <i>list</i></li>
+        	<li>list source code of current file</li>
+        	<li><i>l <b>line_number</b></i> prints source code around the specified line number</li>
+        	<li><i>-&gt;</i> indicates current line</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>next</h3>
+        <pre class="brush: python">
+(Pdb) n
+        </pre>
+        <ul>
+        	<li><i>n</i> for <i>next</i></li>
+        	<li>continue execution until the next line in the current function is reached or it returns</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>break</h3>
+        <pre class="brush: python">
+(Pdb) b 18
+        </pre>
+        <ul>
+        	<li><i>b</i> for <i>break</i></li>
+        	<li>with a line number argument, set a break point at this line in the current file</li>
+        	<li>with a function name, set a break point at the first executable line of the argument</li>
+        	<li><i>b <b>line_number</b></i> sets break point at line <b>18</b></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>continue</h3>
+        <pre class="brush: python">
+(Pdb) c
+        </pre>
+        <ul>
+        	<li><i>c</i> for <i>continue</i></li>
+        	<li>continue execution until break point is encountered</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>step</h3>
+        <pre class="brush: python">
+(Pdb) s
+        </pre>
+        <ul>
+        	<li><i>s</i> for <i>step</i></li>
+        	<li>execute the current line and stop on the first possible occasion</li>
+        	<li><i>step</i> for <i>next</i> because <i>next</i> only stops on lines in current function but <i>step</i> stops on lines inside called function</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>where</h3>
+        <pre class="brush: python">
+(Pdb) w
+        </pre>
+        <ul>
+        	<li><i>w</i> for <i>where</i></li>
+        	<li>print a stack trace with the most recent frame at the bottom</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>arguments</h3>
+        <pre class="brush: python">
+(Pdb) a
+        </pre>
+        <ul>
+        	<li><i>a</i> for <i>arguments</i></li>
+        	<li>print the argument list of the current function</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>quit</h3>
+        <pre class="brush: python">
+(Pdb) q
+        </pre>
+        <ul>
+        	<li><i>q</i> for <i>quit</i></li>
+        	<li>quit debugger and stop executing program</li>
+        </ul>
+    </section>
+    
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h3>Procedure exercise 1 solution</h3>
+         <pre class="brush: python">
+def add():
+    print(2 + 3)
+    
+add()
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Procedure exercise 2 solution</h3>
+         <pre class="brush: python">
+def bottles_lyric(num_bottles): # define procedure
+    print(num_bottles, "bottles of beer on the wall.")
+    print(num_bottles, "bottles of beer.")
+    print("You take one down and pass it around ... ")
+    print(num_bottles - 1, "bottles of beer on the wall.")
+    
+for i in range(100, 0, -1):
+    bottles_lyric(i)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Procedure exercise 3 solution</h3>
+         <pre class="brush: python">
+def print_square(x):
+    print(x * x)
+
+user_input = int(input("Input number to be squared: "))
+print_square(user_input)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Procedure exercise 4 solution</h3>
+         <pre class="brush: python">
+def print_highest(x, y):
+    if x > y:
+        print("The first parameter is the highest")
+    elif y > x:
+        print("The second parameter is the highest")
+    else:
+        print("The parameters have equal value")
+        
+print_highest(1, 2)
+print_highest(1, 1)
+print_highest(2, 1)
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Procedure exercise 5 solution</h3>
+         <pre class="brush: python">
+def print_absolute(x):
+    if x < 0:
+        print(x * -1)
+    else:
+        print(x)
+        
+print_absolute(3)
+print_absolute(0)
+print_absolute(-3)
+        </pre>
+    </section>
+
+    <section>
+        <h3>Function exercise 1 solution</h3>
+         <pre class="brush: python">
+def find_highest(x, y):
+    highest = None
+    if x > y:
+        highest = x
+    elif y > x:
+        highest = y
+    else:
+        highest = x
+    return highest
+        
+print(find_highest(1, 2))
+print(find_highest(1, 1))
+print(find_highest(2, 1))
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Function exercise 2 solution</h3>
+         <pre class="brush: python">
+def cm_to_inches(cm):
+    return cm * 0.393
+    
+cms = 3
+inches = cm_to_inches(cms)
+print(cms, "centimeters is", inches, "inches")
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Function exercise 3 solution</h3>
+         <pre class="brush: python">
+def kg_to_pounds(kg):
+    return kg * 2.204
+    
+kg = 80
+pounds = kg_to_pounds(kg)
+print(kg, "kilos is", pounds, "pounds")
+        </pre>
+    </section>
+
+    <section>
+        <h3>Function exercise 4 solution</h3>
+         <pre class="brush: python">
+def user_defined_range(start, stop, step):
+    i = start
+    l = []
+    while i < stop:
+        l.append(i)
+        i += step
+    return l
+
+print(user_defined_range(0, 11, 2))
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Function exercise 5 solution</h3>
+        <div class="exercize_text">
+         <pre class="brush: python">
+def calculate_bmi_metric(weight_kg, height_meters):
+    return weight_kg / ((height_meters) ** 2)
+
+def find_bmi_category(bmi):
+    if bmi < 18.5:
+        return "underweight"
+    elif bmi <= 25:
+        return "normal"
+    elif bmi <= 30:
+        return "overweight"
+    else:
+        return "obese"
+
+def display_bmi_metric(weight_kg, height_meters):
+    bmi = calculate_bmi_metric(weight_kg, height_meters)
+    category = find_bmi_category(bmi)
+    print("Your BMI is", bmi)
+    print("You are", category)
+
+display_bmi_metric(75, 1.86)
+        </pre>
+        </div>
+    </section>
+
+    <section id="more-exercises">
+        <h3>If you've finished everything</h3>
+        <ul>
+            <li><a href="http://projecteuler.net/problems">number-based problems for computing</a></li>
+            <li><a href="http://rosalind.info/problems/list-view/">string-based problems for computing</a></li>
+        </ul>
+    </section>
+    
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

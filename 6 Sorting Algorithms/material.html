@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h1>Computer Programming in Python</h1>
+        <p><small>by Colm Sloan</small></p>
+    </section>
+
+    <section id="table-of-contents">
+        <h3>Table of contents</h3>
+        <ol>
+        	<li><a href="#/big-o">Big O</a></li>
+            <li><a href="#/selection-sort">Selection Sort</a></li>
+            <li><a href="#/bubble-sort">Bubble Sort</a></li>
+            <li><a href="#/shaker-sort">Shaker Sort</a></li>
+            <li><a href="#/insertion-sort">Insertion Sort</a></li>
+            <li><a href="#/more-exercises">More Exercises</a></li>
+        </ol>
+    </section>
+    
+    <section id="big-o">
+        <h3>Big O</h3>
+        <ul>
+        	<li>a notation to describe how an algorithm scales with its number of inputs</li>
+        	<li><i>algorithm</i> here will mean a non-trivial function for solving a problem</li>
+        	<li>referred to as "big O" notation</li>
+        	<li>represented as a function called "O" e.g. <i>O(n)</i></li>
+        	<li>which could be thought of as a function like <i>big_o(num_inputs)</i></li>  	
+        	
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <pre class="brush: python">
+def is_empty(list):
+    counter = 0
+    for i in list:
+        counter += 1
+        break
+    return counter == 0
+        </pre>
+        <ul>
+        	<li><i>O(1)</i> means that as the number of inputs increases, the number of operations remain the same</li>
+        	<li><i>list.append()</i> performs the same number of operations regardless the the length of the list</li>
+        	<li>accessing the first element in a list is <i>O(1)</i></li>
+        	<li><i>is_empty()</i> is <i>O(1)</i> because even the same number of operations will be performed if there is 1 or 1,000,000 elements in the list</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <pre class="brush: python">
+def num_elements(list):
+    counter = 0
+    for i in list:
+        counter += 1
+    return counter
+        </pre>
+        <ul>
+        	<li><i>O(n)</i> means that as the number of inputs increases, the number of operations scales linearly</li>
+        	<li>finding the maximum value in a list is <i>O(n)</i> because if 10 elements are in the list (n = 10), 10 elements must be checked to find the maximum</li>
+        	<li>summing all of the numbers in a list is <i>O(n)</i></li>
+        	<li>finding only the odd numbers in a list is <i>O(n)</i></li>
+        	<li>finding if a particular element exists in a list is <i>O(n)</i></li>
+        	<li>the search number might be found in the first index checked but big O describes how the algorithm scales, so search is still <i>O(n)</i></li>
+        	<li><i>num_elements</i> is <i>O(n)</i> because the number of operations (here being to loop and increase the value of the counter) increases linearly with the number of elements in the list</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <ul>
+        	<li>brief detour to explain <i>log</i></li>
+        	<li><i>log</i>, short for logarithm, is the opposite of exponent</li>
+        	<li><i>2<sup>3</sup> = 8</i> corresponds to <i>log<sub>2</sub>8 = 3</i></li>
+        	<li>the exponent needed for one number to equal another</li>
+        	<li>the number of times some number must be multiplied by itself to equal some other number</li>
+        	<li>computer algorithms usually use base 2</li>
+        	<li>so <i>log n</i> for us means <i>log<sub>2</sub>n</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <pre class="brush: python">
+def binary_search(sorted_list, search_key)
+    imin = 0
+    imax = len(sorted_list) - 1
+    # continue searching while [imin, imax] is not empty
+    while (imax >= imin):
+        # calculate the midpoint for roughly equal partition
+        imid = midpoint(imin, imax)
+        if(sorted_list[imid] == search_key):
+            # key found at index imid
+            return imid
+        # determine which subarray to search
+        elif (sorted_list[imid] < key):
+            # change min index to search upper subarray
+            imin = imid + 1
+        else:
+            # change max index to search lower subarray
+            imax = imid - 1
+    # key was not found
+    return None
+        </pre>
+        <ul>
+        	<li>binary search algorithm takes a supported list and successively cuts it in half looking for the search value</li>
+        	<li>http://www.cs.armstrong.edu/liang/animation/web/BinarySearch.html</li>
+        	
+        	<li>picture a phone book sorted by last name</li>
+        	<li>binary search algorithm is <i>O(log n)</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <pre class="brush: python">
+def send_secret_santa_address(client_list)
+    for client in client_list:
+        receiver_address = binary_search_address(client.gift_receiver())
+        send_address(client, receiver_address)
+        </pre>
+        <ul>
+            <li><i>O(n log n)</i> means <i>O(n * log n)</i></li>
+        	<li><i>O(n log n)</i> means that as the number of inputs increases, the number of operations scales linearithmeticly</li>
+        	<li>for each element, perform some <i>O(log n)</i> algorithm</li>
+        	<li>merge sort, quick sort, fast Fourier transform are <i>O(n log n)</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <pre class="brush: python">
+def everyone_shake_hands(people):
+    for person in people:
+        for other_person in people:
+            if person == other_person:  # can't shake hands with themselves
+                continue
+            shake_hands(person, other_person)
+        </pre>
+        <ul>
+        	<li><i>O(n<sup>2</sup>)</i> means that as the number of inputs increases, the number of operations scales quadratically</li>
+        	<li>anything with a nested iterations performed on the same iterable is <i>O(n<sup>2</sup>)</i></li>
+        	<li>bubble sort is <i>O(n<sup>2</sup>)</i></li>
+        	<li><i>everyone_shake_hands()</i> is <i>O(n<sup>2</sup>)</i> because every person added (approximately) quadratically increases the number of hand shakes</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <ul>
+        	<li>if <i>everyone_shake_hands()</i> always skips if <i>person == other_person</i>, isn't it <i>O(n<sup>2</sup>) - O(n)</i>?</li>
+        	<li>no, only consider complexity of most complex operation because other operations will become negligible as <i>n</i> increases</li>
+        	<li>e.g. n = 100, <i>100<sup>2</sup></i> - 100 becomes 10,000 - 100</li>
+        	<li>so <i>O(n<sup>2</sup>) - O(n)</i> is just <i>O(n<sup>2</sup>)</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <ul>
+            <li>sometimes people will refer to best, worst and average big O for an algorithm</li>
+        	<li>for example, sometimes an element will be right in the middle of a list and binary search will find it in one step</li>
+        	<li>therefore, best case for binary search is <i>O(1)</i></li>
+        	<li>I'll only refer to average case</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Big O</h3>
+        <img src="./images/big-o.jpg" />
+        <figcaption>source: apelbaum.wordpress.com</figcaption>
+    </section>
+    
+    <section id="selection-sort">
+        <h3>Selection Sort</h3>
+        <blockquote>
+            The algorithm divides the input list into two parts: the sublist of items already sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining to be sorted that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
+        <cite>Wikipedia</cite>
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Selection Sort</h3>
+        <pre class="brush: python">
+unsorted list is the entire list
+for each element in the whole list
+  # a single iteration
+  for each element in the unsorted list
+    find the index with the smallest value
+    swap the value at that index with the first value in the unsorted list
+  make unsorted list no longer include its first element
+        </pre>
+        <ul>
+        	<li><i>O(n<sup>2</sup>)</i> average where the operation is the number of comparisons of elements in the list being sorted</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Selection Sort</h3>
+        <img src="./images/Selection-Sort.jpg" />
+        <figcaption>source: freefeast.info</figcaption>
+    </section>
+    
+    <section>
+        <h3>Selection Sort</h3>
+        <img src="./images/selection-sort-numbers.gif" />
+        <figcaption>source: Wikipedia</figcaption>
+    </section>
+    
+    <section>
+        <h3>Selection Sort</h3>
+        <img src="./images/selection-sort-bars.gif" />
+        <figcaption>www.sorting-algorithms.com</figcaption>
+    </section>
+
+    <section id="bubble-sort">
+        <h3>Bubble Sort</h3>
+        <blockquote>
+            Bubble sort works by repeatedly stepping through the list to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
+        <figcaption>Wikipedia</figcaption>
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Bubble Sort</h3>
+        <pre class="brush: python">
+unsorted list is the whole list
+for each element in the whole list
+  # a single iteration
+  for each element in the unsorted list
+    if the element currently being inspected is bigger than the next element
+      swap the value the currently inspected element with the next element
+  unsorted is unsorted list minus its last element
+        </pre>
+        <ul>
+        	<li><i>O(n<sup>2</sup>)</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Bubble Sort</h3>
+        <img src="./images/bubble-sort-numbers.gif" />
+        <figcaption>source: Wikipedia</figcaption>
+    </section>
+    
+    <section>
+        <h3>Bubble Sort</h3>
+        <img src="./images/bubble-sort-bars.gif" />
+        <figcaption>www.sorting-algorithms.com</figcaption>
+    </section>
+    
+    <section id="shaker-sort">
+        <h3>Shaker Sort</h3>
+        <blockquote>
+            Shaker sort works like bubble support by repeatedly stepping through the list to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order. However, shaker sort sorts in both directions.
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Shaker Sort</h3>
+        <pre class="brush: python">
+unsorted list is the whole list
+for each element in the whole list
+  # a single iteration
+  for each element in the unsorted list starting from the beginning
+    if the element currently being inspected is bigger than the next element
+      swap the value the currently inspected element with the next element
+  unsorted is unsorted list minus its last element
+  for each element in the unsorted list starting from the end
+    if the element currently being inspected is smaller than the next element
+      swap the value the currently inspected element with the next element
+  unsorted is unsorted list minus its first element
+        </pre>
+        <ul>
+        	<li><i>O(n<sup>2</sup>)</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Shaker Sort</h3>
+        <img src="./images/shaker-sort.gif" />
+        <figcaption>source: Wikipedia</figcaption>
+    </section>
+    
+    <section id="insertion-sort">
+        <h3>Insertion Sort</h3>
+        <blockquote>
+            Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. Each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.
+        <cite>Wikipedia</cite>
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Insertion Sort</h3>
+        <pre class="brush: python">
+unsorted list is the whole list
+for each element in the whole list
+  # a single iteration
+  compare the element under consideration with every element that came before it
+  put element under consideration after the first element with a smaller value
+        </pre>
+        <ul>
+        	<li><i>O(n<sup>2</sup>)</i></li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Insertion Sort</h3>
+        <img src="./images/insertion-sort-numbers.gif" />
+        <figcaption>source: Wikipedia</figcaption>
+    </section>
+    
+    <section>
+        <h3>Insertion Sort</h3>
+        <img src="./images/insertion-sort-bars.gif" />
+        <figcaption>www.code-project.com</figcaption>
+    </section>
+
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>

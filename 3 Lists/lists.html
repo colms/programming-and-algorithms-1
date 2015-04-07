@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h1>Computer Programming in Python</h1>
+        <p><small>by Colm Sloan</small></p>
+    </section>
+
+    <section id="table-of-contents">
+        <h3>Table of contents</h3>
+        <ol>
+            <li><a href="#/list-intro">Introduction to Lists</a></li>
+            <li><a href="#/accessing">Accessing</a></li>
+            <li><a href="#/len-function">len Function</a></li>
+            <li><a href="#/slicing">Slicing</a></li>
+            <li><a href="#/twod">Two-Dimensional Lists</a></li>
+            <li><a href="#/building">Building</a></li>
+            <li><a href="#/mutating">Mutating</a></li>
+            <li><a href="#/more-exercises">More Exercises</a></li>
+        </ol>
+    </section>
+    
+    <section id="list-intro">
+        <h3>What is a list?</h3>
+        <blockquote>
+            In Python, a list is a data structure containing an ordered sequence of values where each value is associated with an index denotating the values position in the sequence.
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Lists</h3>
+        <pre class="brush: python">
+x = [3, "apples", "cats", 4.91, "apples"]
+print(x) # [3, 'apples', 'cats', 4.91, 'apples']
+        </pre>
+        <ul>
+            <li>an ordered collection of objects of any type</li>
+            <li>can be of any length, including empty</li>
+            <li>can contain duplicates</li>
+            <li>contained within square brackets</li>
+            <li>elements are separated by commas</li>
+            <li>useful for dealing with a huge number of variables</li>
+            <li>no need to create hundreds of variables</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>List visualization</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+        </pre>
+        <img src="./images/list_visualization.png" />
+    </section>
+
+    <section id="accessing">
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile"]
+print(animals)     # ['ape', 'bison', 'crocodile']
+print(animals[0])  # 'ape'
+print(animals[1])  # 'bison'
+print(animals[2])  # 'crocodile'
+        </pre>
+        <ul>
+            <li>individual list elements can be accessed</li>
+            <li>access an element using a number enclosed between square brackets</li>
+            <li>note that lists start at number zero, not one</li>
+            <li><i>list_name[index_of_element]</i> = corresponding value</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+print(numbers)  # [3, 7, 4, 9, 2]
+print(numbers[0])  # 3
+print(numbers[1])  # 7
+print(numbers[2])  # 4
+print(numbers[3])  # 9
+print(numbers[4])  # 2
+        </pre>
+        <ul>
+            <li>can be any data type in a list</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+greeting = "hello"
+print(greeting) # 'hello'
+print(greeting[0])  # 'h'
+print(greeting[1])  # 'e'
+print(greeting[2])  # 'l'
+print(greeting[3])  # 'l'
+print(greeting[4])  # 'o'
+        </pre>
+        <ul>
+            <li>characters within a string can be accessed using indices</li>
+		<li>remember that strings are iterables and can be accessed using index notation</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+x = numbers[1]  # 7
+y = numbers[3]  # 9
+print(x + y)    # 16
+        </pre>
+        <ul>
+            <li>can assign element values to variables</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+x = 2
+y = numbers[x]  # 4
+print(z)        # 4
+        </pre>
+        <ul>
+            <li>variables can be used as indices</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+print(numbers[-1])        # 2
+        </pre>
+        <ul>
+            <li>we can use negative indices to start from the end</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile"]
+print(animals[0]) # 'ape'
+print(animals[3]) # Error: list index out of range
+        </pre>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+
+print(numbers[-6])  # crash - too low an index
+print(numbers[5])   # crash - too high an index
+        </pre>
+        <ul>
+            <li>beware of list range</li>
+            <li>going outside of the range of a list generates an error</li>
+        </ul>
+    </section>
+
+    <section id="len-function">
+        <h3>len function</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+
+print(len(numbers))  # 5
+        </pre>
+        <ul>
+            <li>takes a collection as input</li>
+            <li>number of elements in collection as output</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>len function</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+first = numbers[0]
+last = numbers[len(numbers) - 1]
+print(first)  # 3
+print(last)   # 2
+        </pre>
+        <ul>
+            <li>takes a collection as input</li>
+            <li>number of elements in collection as output</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>len function</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile"]
+i = 0
+while i < len(animals):
+    print(animals[i])
+    i += 1
+        </pre>
+        <ul>
+            <li>elements could be printed like so</li>
+            <li>but this is not Pythonic code</li>
+            <li>prefer for loops instead</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>len function</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile"]
+for animal in animals:
+    print(animal)
+        </pre>
+        <ul>
+            <li>elements could be printed like so</li>
+            <li>but this is not Pythonic code</li>
+            <li>prefer for loops instead</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+i = 0
+total = 0
+while i < len(numbers):
+    total += numbers[i]
+print("The total is", total)
+        </pre>
+        <ul>
+            <li>calculate list sum using variable index</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+for number in numbers:
+    total += number
+print("The total is", total)
+        </pre>
+        <ul>
+            <li>or use a for loop</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Accessing list elements</h3>
+        <pre class="brush: python">
+numbers = [3, 7, 4, 9, 2]
+total = sum(numbers)
+print("The total is", total)
+        </pre>
+        <ul>
+            <li>or use the built-in <i>sum</i> function</li>
+        </ul>
+    </section>
+
+    <section id="slicing">
+        <h3>Slicing</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+print(animals[0:2])  # ['ape', 'bison']
+print(animals[1:4])  # ['bison', 'crocodile', 'dog']
+print(animals[2:2])  # []
+        </pre>
+        <ul>
+            <li>a subset or 'slice' of a list can be accessed using the slicing notation</li>
+            <li>slice = my_list[start_index:end_index]</li>
+            <li>slice includes the elements from the start index up to but not including the end index</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Slicing</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+print(animals[0:-1])  # ['ape', 'bison', 'crocodile', 'dog']
+print(animals[1:-2])  # ['bison', 'crocodile']
+        </pre>
+        <ul>
+            <li>a negative index specifies the distance from the last element in a list</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Slicing</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+print(animals[2:])   # ['crocodile', 'dog', 'elephant']
+print(animals[:2])   # ['ape', 'bison']
+print(animals[:-1])  # ['ape', 'bison', 'crocodile', 'dog']
+print(animals[-1:])  # ['elephant']
+print(animals[:])    # ['ape', 'bison', 'crocodile', 'dog', 'elephant']
+        </pre>
+        <ul>
+            <li>an unspecified index means every element</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Slicing</h3>
+        <pre class="brush: python">
+greeting = "hello"
+print(greeting[2:])   # 'llo'
+print(greeting[:2])   # 'he'
+print(greeting[:-1])  # 'hell'
+print(greeting[-1:])  # 'o'
+print(greeting[:])    # 'hello'
+        </pre>
+        <ul>
+            <li>slicing will also work with strings because strings are also iterable</li>
+        </ul>
+    </section>
+
+    <section id="twod">
+        <h3>Two dimensional lists</h3>
+        <pre class="brush: python">
+game = [['x', 'o', 'x'],
+        ['o', 'x', 'x'],
+        ['x', 'o', 'o']
+       ]
+        </pre>
+        <ul>
+            <li>lists consisting entirely of flat lists are called two dimensional lists</li>
+            <li>each list is its own element</li>
+        </ul>
+    </section>
+
+    <section id="twod">
+        <h3>Two dimensional lists</h3>
+        <pre class="brush: python">
+csv_data = "name,credit_card_num,cvv\n
+Fiona Thompson,5125066709122624,629\n
+Fuller Carr,345575349302967,893\n
+Cherokee Valentine,5119477905281811,381\n
+Cailin Hyde,5152349040773695,356\n
+Mariko Velez,343307525152341,911"
+
+csv_data_lists = [['name','credit_card_num','cvv'],
+                  ['Fiona Thompson','5125066709122624','629'],
+                  ['Fuller Carr','345575349302967','893'],
+                  ['Cherokee Valentine','5119477905281811','381'],
+                  ['Cailin Hyde','5152349040773695','356'],
+                  ['Mariko Velez','343307525152341','911']]
+        </pre>
+        <ul>
+            <li>most commonly used for reading and writing data from a comma separated value file</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Two dimensional lists</h3>
+        <pre class="brush: python">
+csv_data = [['name','credit_card_num','cvv'],
+            ['Fiona Thompson','5125066709122624','629'],
+            ['Fuller Carr','345575349302967','893'],
+            ['Cherokee Valentine','5119477905281811','381'],
+            ['Cailin Hyde','5152349040773695','356'],
+            ['Mariko Velez','343307525152341','911']]
+
+# the first element of the first list
+row = 0
+column = 0
+print(csv_data[row][column])
+
+# the second element of the forth list
+row = 3
+column = 1
+print(csv_data[row][column])  
+        </pre>
+        <ul>
+            <li>access elements using square brackets</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Two dimensional lists</h3>
+        <pre class="brush: python">
+csv_data = [['name','credit_card_num','cvv'],
+['Fiona Thompson','5125066709122624','629'],
+['Fuller Carr','345575349302967','893'],
+['Cherokee Valentine','5119477905281811','381'],
+['Cailin Hyde','5152349040773695','356'],
+['Mariko Velez','343307525152341','911']]
+
+for row in csv_data:
+    for cell in row:
+        print(cell)
+        </pre>
+        <ul>
+            <li>iterate through rows and columns</li>
+        </ul>
+    </section>
+    
+    <section id="building">
+        <h3>Adding elements to a list</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile"]
+animals.append("dog")
+animals.append("elephant")
+print(animals)  # ['ape', 'bison', 'crocodile', 'dog', 'elephant']
+        </pre>
+        <pre class="brush: python">
+numbers = [38, 91, 22]
+numbers.append(44)
+numbers.append(7)
+print(numbers)  # [38, 91, 22, 44, 7]
+        </pre>
+        <ul>
+            <li>elements can be individually added to a list</li>
+            <li>numbers can be added just the same as strings</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Adding elements to a list</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile"]
+more_animals = ["dog", "elephant"]
+animals.append(more_animals)
+print(animals)  # ['ape', 'bison', 'crocodile', ['dog', 'elephant']]
+        </pre>
+        <ul>
+            <li>another list can bee added as an element to an existing list</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Adding elements to a list</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile"]
+more_animals = ["dog", "elephant"]
+animals.extend(more_animals)
+print(animals)  # ['ape', 'bison', 'crocodile', 'dog', 'elephant']
+        </pre>
+        <ul>
+            <li>all of the elements in one list can be appended to another</li>
+        </ul>
+    </section>
+    
+    <section id="mutating">
+        <h3>Mutating lists</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+for animal in animals:
+    animal = "zebra"
+print(animals)  # ['ape', 'bison', 'crocodile', 'dog', 'elephant']
+        </pre>
+        <ul>
+            <li>all list elements still have their original value</li>
+            <li>remember that <i>animal</i> is only a temporary variable</li>
+            <li>we do not alter the list value, just the temporary variable value</li>
+        </ul>
+    </section>
+    
+    <section id="mutating">
+        <h3>Mutating lists</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+animals[0] = "ant"
+print(animals)  # ['ant', 'bison', 'crocodile', 'dog', 'elephant']
+        </pre>
+        <ul>
+            <li>all list elements still have their original value</li>
+            <li>remember that <i>animal</i> is only a temporary variable</li>
+            <li>we do not alter the list value, just the temporary variable value</li>
+        </ul>
+    </section>
+    
+<!--    <section>
+        <h3>List enumeration</h3>
+        <pre class="brush: python">
+animals = ["ape", "bison", "crocodile", "dog", "elephant"]
+for index, animal in enumerate(animals):
+    animals[index] = "zebra"
+print(animals)  # ['zebra', 'zebra', 'zebra', 'zebra', 'zebra']
+        </pre>
+        <ul>
+            <li>all list element values are "zebra"</li>
+            <li><i>animal</i> is still a temporary variable holding copy of value</li>
+            <li><i>index</i> holds the index number of the list value</li>
+            <li>index starts at 0 and increases by 1 until it reaches 4 because <i>animals</i> has 5 elements</li>
+        </ul>
+    </section>
+-->
+
+    <section id="list-exercises">
+        <h3>List exercise 1</h3>
+        <div class="exercize_text">
+            Initialize a list with five integer values of your choice. Display the value of the integer present at index 0 plus the integer present at index 3. 
+        </div>
+    </section>
+    
+    <section>
+        <h3>List exercise 2</h3>
+        <div class="exercize_text">
+            Initialize a list with five integer values of your choice. Take an integer from the user. Display the value present at the list index specified by the user input integer.
+        </div>
+    </section>
+    
+    <section>
+        <h3>List exercise 3</h3>
+        <div class="exercize_text">
+            Initialize a list with five integer values of your choice. Take an integer from the user. Display the sum of all integers in the list with an index less than or equal to the user input integer.
+        </div>
+    </section>
+
+    <section>
+        <h3>List exercise 4</h3> 
+        <div class="exercize_text">
+            Populate a list with 5 integers taken from the user using a while loop. After all inputs have been taken, run through the list to check if an element value is less than 10 using a for loop. If a value is less than 10, set it to 0. Finally, display the list.
+        </div>
+    </section>
+    
+    <section>
+        <h3>List exercise 5</h3>
+        <div class="exercize_text">
+            Initialize a list with five integer values of your choice. Take an integer from the user and display whether or not the integer is present in the list. Iterate over the list using a for loop. 
+        </div>
+    </section>
+    
+    <section>
+        <h3>List exercise 6</h3> 
+        <div class="exercize_text">
+            Populate a list with 5 integers taken from the user using a while loop. After all inputs have been taken, run through the list to check if an element value is less than 10 using a for loop. If a value is less than 10, set it to 0. Finally, display the list.
+        </div>
+    </section>
+
+    <section>
+        <h3>String exercise 1</h3>
+        <div class="exercize_text">
+            Generate a string with the value "zappy" from a string with the value "happy" through the use of string relational operators and slicing.
+        </div>
+    </section>
+    
+    <section>
+        <h3>String exercise 2</h3>
+        <div class="exercize_text">
+            Write a program to count the how many times the letter 's' occurs in the word "Mississippi". Have the program count the letters using two different techniques: one that you have implemented yourself and another using standard library functions.
+        </div>
+    </section>
+            
+    <section>
+        <h3>String exercise 3</h3>
+        <div class="exercize_text">
+            Write a program to count the number of differences between the strings "10001011" and "11001010".
+        </div>
+    </section>
+    
+    <section>
+        <h3>String exercise 4</h3>
+        <div class="exercize_text">
+            Write a program to replace all occurrences of the 'i' with 'a' in the word "Mississippi". Do this using two different techniques: one that you have implemented yourself and another using standard library functions.
+        </div>
+    </section>
+    
+    <section>
+        <h3>String exercise 5</h3>
+        <div class="exercize_text">
+            Generate a random string of 8 characters and output whether the string contains the letter 'e'.
+        </div>
+    </section>
+    
+    <section id="more-exercises">
+        <h3>If you've finished everything</h3>
+        <ul>
+            <li><a href="http://projecteuler.net/problems">number-based problems for computing</a></li>
+            <li><a href="http://rosalind.info/problems/list-view/">string-based problems for computing</a></li>
+        </ul>
+    </section>
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>

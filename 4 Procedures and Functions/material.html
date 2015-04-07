@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Computer Programming</title>
+
+		<meta name="description" content="Computer Programming in Python">
+		<meta name="author" content="Colm Sloan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="../reveal/css/killester.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+		<link rel="stylesheet" href="../reveal/lib/css/print/pdf.css">
+		
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="..reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+        
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="../syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
+        <link type="text/css" rel="stylesheet" href="../syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<div class="reveal">
+<div class="slides">
+
+    <section>
+        <h1>Computer Programming in Python</h1>
+        <p><small>by Colm Sloan</small></p>
+    </section>
+    
+    <section id="table-of-contents">
+        <h3>Table of contents</h3>
+        <ol>
+            <li><a href="#/procedures">Procedures</a></li>
+            <li><a href="#/procedure-parameterized">Parameterized Procedures</a></li>
+            <li><a href="#/procedure-multiple-parameters">Procedures with Multiple Parameters</a></li>
+            <li><a href="#/functions">Functions</a></li>
+            <li><a href="#/scope">Scope</a></li>
+            <li><a href="#/main">main function</a></li>
+            <li><a href="#/procedure-exercises">Procedure Exercises</a></li>
+            <li><a href="#/function-exercises">Function Exercises</a></li>
+            <li><a href="#/more-exercises">More Exercises</a></li>
+        </ol>
+    </section>
+    
+    <section id="procedures">
+        <h3>Procedure</h3>
+        <ul>
+            <li>a function is an ordered sequence of statements</li>
+            <li>a procedure is a type of function that does not return a value</li>
+            <li>used to reduce code duplication</li>
+            <li>used to increase code reusability</li>
+            <li>used to increase code readability</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Procedure</h3>
+        <pre class="brush: python">
+print("Hello there!")
+        </pre>
+        <ul>
+            <li>we've already seen this procedure</li>
+            <li>prints something to console and doesn't return a value we can sign to a variable</li>
+            <li>we can define or own procedures</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Procedure example</h3>
+        <pre class="brush: python">
+def greet_user():  # define procedure
+    print("Hello there!")
+    print("Nice to meet you!")
+        </pre>
+        <ul>
+            <li><i>def</i> keyword (for <i>define</i>) followed by procedure name, parameters in parentheses, and colon</li>
+            <li>this procedure has no parameters</li>
+            <li>all indented code belongs to procedure</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Procedure example</h3>
+        <pre class="brush: python">
+def greet_user():  # define procedure
+    print("Hello there!")
+    print("Nice to meet you!")
+    
+greet_user()  # call procedure
+        </pre>
+        <ul>
+            <li>a procedure can be invoked after it has been defined</li>
+            <li>script is being read from top to bottom</li>
+            <li>invoke (call) procedure by writing procedure name with correct number of arguments</li>
+            <li>an <i>argument</i> is an input to a procedure</li>
+            <li><i>print</i> can take any number of arguments</li>
+            <li><i>greet_user</i> can only be called with zero arguments</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Procedure example</h3>
+        <pre class="brush: python">
+def single_letter_greet_user():
+    greeting = "Hello there!"
+    for letter in greeting:
+        print(letter)
+        </pre>
+        <ul>
+            <li>any code can be in a procedure</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Procedure</h3>
+        <pre class="brush: python">
+def greet_user():
+    print("Hello there!")
+    print("Nice to meet you!")
+
+def single_letter_greet_user():
+    greeting = "Hello there!"
+    for letter in greeting:
+        print(letter)
+        </pre>
+        <ul>
+            <li>multiple procedure can be defined in the same file</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Procedure</h3>
+        <pre class="brush: python">
+def greet_user():
+    print("Hello there!")
+    single_letter_greet_user()
+    print("Nice to meet you!")
+
+def single_letter_greet_user():
+    greeting = "Hello there!"
+    for letter in greeting:
+        print(letter)
+        </pre>
+        <ul>
+            <li>procedures can be called inside procedures</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Procedure</h3>
+        <pre class="brush: python">
+def greet_user():
+    print("Hello there!")
+    print("Nice to meet you!")
+    greet_user()
+        </pre>
+        <ul>
+            <li>be careful not to have a procedure call itself</li>
+        </ul>
+    </section>
+
+    <section id="procedure-parameterized">
+        <h3>Parameterized procedures</h3>
+        <pre class="brush: python">
+def print_plus_one(x):  # x parameter receives 3 argument
+    print(x + 1)
+
+print_plus_one(3) # call procedure with 3 as argument
+        </pre>
+        <ul>
+            <li>parameters are variables that must be passed into a function when it is called</li>
+            <li>arguments are the values passed to a function when calling it</li>
+            <li>parameters and arguments are inside parentheses</li>
+            <li>in <i>print_double(3)</i>, 3 is the argument</li>
+            <li>in <i>def print_double(x)</i>, <i>x</i> is the parameter</li>
+            <li>notice that the number of arguments match the number of parameters</li>
+            <li>the parameter takes the value of the argument, e.g. <i>x</i> will have a value of 3 here</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Parameterized procedures</h3>
+        <pre class="brush: python">
+def print_plus_one(x):  # x parameter receives 3 argument
+    # x = 3
+    print(x + 1)
+
+print_plus_one(3)  # call procedure with 3 as argument
+        </pre>
+        <ul>
+            <li>this is what is kind of looks like under the hood</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Parameterized procedures</h3>
+        <pre class="brush: python">
+def print_plus_one(x):
+    print(x + 1)
+
+print_plus_one(3)  # 4
+        </pre>
+        <ul>
+            <li>parameters must be of the right data type</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Parameterized procedures</h3>
+        <pre class="brush: python">
+def print_plus_one(x):
+    print(x + 1)
+
+print_plus_one("hello")  # crash: Can't convert 'int' object to str implicitly
+        </pre>
+        <ul>
+            <li>parameters must be of the right data type</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Parameterized procedures</h3>
+        <pre class="brush: python">
+def print_plus_one(x):
+    print(x + 1)
+
+x = 3
+print_plus_one(x)  # 4
+        </pre>
+        <ul>
+            <li>variables can be passed to procedures</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Parameterized procedures</h3>
+        <pre class="brush: python">
+def print_plus_one(x):
+    print(x + 1)
+
+total = 3
+print_plus_one(total)  # 4
+        </pre>
+        <ul>
+            <li>arguments don't have to have the same name as the parameter</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Parameterized procedures</h3>
+        <pre class="brush: python">
+def rocket_countdown(time_left):
+    if time_left > 0:
+        print("t minus", time_left)
+    elif time_left == 0:
+        print("Blast off!")
+    
+rocket_countdown(2)
+rocket_countdown(1)
+rocket_countdown(0)
+        </pre>
+        <ul>
+            <li>in rocket_countdown(2)</i>, 2 is the argument</li>
+            <li>in <i>def rocket_countdown(time_left)</i>, <i>time_left</i> is the parameter</li>
+            <li>the parameter takes the value of the argument, e.g. <i>time_left</i> will have a value of 2 here</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Function naming conventions</h3>
+        <ul>
+            <li>a function should be named according to what it does</li>
+            <li>if it’s hard to accurately name a function, it probably means it’s doing too much and should be broken into multiple functions</li>
+            <li>follow the <i>verb_noun</i> system when possible e.g. <i>get_lives</i>, <i>load_file</i></li>
+            <li>functions should be no longer than <i>n</i> statements where <i>n</i> is defined in the style guide</li>
+            <li>consider that webkit functions contain on average 2.1 statements, firefox 6.7 and IE 7.1</li>
+            <li>http://aptiverse.com/blog/closer_look_at_chrome/</li>
+        </ul>
+    </section>
+    
+    <section id="procedure-multiple-parameters">
+        <h3>Parameterized procedure with multiple parameters</h3>
+        <pre class="brush: python">
+def print_division(x, y):
+    print(x, "divided by", y, "is", x / y)
+    
+print_division(12, 3)
+        </pre>
+        <ul>
+            <li>arguments are assigned to parameters in order, e.g. <i>x</i> becomes 12, <i>y</i> becomes 3</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Parameterized procedure with multiple parameters</h3>
+        <pre class="brush: python">
+def print_division(x, y):
+    print(x, "divided by", y, "is", x / y)
+
+x = 8
+y = 4
+print_division(x, y)  # 2
+
+x = 8
+y = 4
+print_division(y, x)  # 0.5
+        </pre>
+        <ul>
+            <li>argument name is irrelevant</li>
+            <li>only order matters</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Parameterized procedure with multiple parameters</h3>
+        <pre class="brush: python">
+def print_double_list(multiplier, list):
+    print(x, "divided by", y, "is", x / y)
+
+m = 2
+l = [5, 7, 8, 1, 4]
+print_multiply_list(m, l)
+        </pre>
+        <ul>
+            <li>any data type can be passed to a procedure, including lists</li>
+        </ul>
+    </section>
+    
+    <section id="functions">
+        <h3>Functions</h3>
+        <ul>
+            <li>a function is an ordered sequence of statements</li>
+            <li>a function returns a value</li>
+            <li>used to reduce code duplication</li>
+            <li>used to increase code reusability</li>
+            <li>used to increase code readability</li>
+        </ul>
+        <figure>
+            <img src="./images/function.png" />
+            <figcaption>source: Webopedia</figcaption>
+        </figure>
+    </section>
+    
+    <section>
+        <h3>Functions</h3>
+        <pre class="brush: python">
+i = int("5")
+user_input = input("Please input a number")
+l = len([5, 7, 3])
+r = range(0, 11, 1)
+        </pre>
+        <ul>
+            <li>we've already used several functions</li>
+            <li>give input, receive output</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Function example</h3>
+        <pre class="brush: python">
+def double(x):
+    return x * 2
+
+doubled = double(3)
+print("double 3 is", doubled)
+        </pre>
+        <ul>
+            <li>the <i>return</i> keyword precedes the values returned from the function</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Function example</h3>
+        <pre class="brush: python">
+def double(x):
+    return x * 2
+
+doubled = double(3)
+print("double 3 is", doubled)
+quadrupled = double(doubled)
+print("quadrupled 3 is", quadrupled)
+        </pre>
+        <ul>
+            <li>just like procedures, functions can be called as after as needed</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Function example</h3>
+        <pre class="brush: python">
+def add(x, y):
+    return x + y
+
+sum = add(2, 3)
+print("sum is", sum)
+        </pre>
+        <ul>
+            <li>functions can have multiple parameters too</li>
+            <li><i>add</i> is a user defined function</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Function example</h3>
+        <pre class="brush: python">
+def expand_letter_to_gender(letter):
+    if letter == 'm':
+        return "male"
+    elif letter == 'f':
+        return "female"
+    else:
+        return "null"
+        
+john = expand_letter_to_gender('m')
+joan = expand_letter_to_gender('f')
+zorbak = expand_letter_to_gender('q')
+print("john is", john)
+print("joan is", joan)
+print("zorbak is", zorbak)
+        </pre>
+        <ul>
+            <li>functions can have multiple possible return values</li>
+        </ul>
+        <figure>
+            <img src="./images/gender_function.png" />
+        </figure>
+    </section>
+
+    <section id="scope">
+        <h3>Scope in Python</h3>
+        <blockquote>
+            The scope of an identifier is the part of a computer program where the identifier, a name that refers to some entity in the program, can be used to find the referred entity.
+            <cite>Wikipedia</cite>
+        </blockquote>
+        <blockquote>
+            Scope is an enclosing context where values and expressions are associated.
+            <cite>Princeton</cite>
+        </blockquote>
+    </section>
+    
+    <section>
+        <h3>Scope in Python</h3>
+        <ul>
+            <li>functions</li>
+            <li>generator expressions</li>
+            <li>classes</li>
+            <li>modules</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Function scope</h3>
+        <pre class="brush: python">
+def print_double(x):
+    ##############
+    # function scope
+    x *= 2
+    print(x)  # x no longer exists after this statement
+    ##############
+    
+print_double(3)
+print(x)  # crash - 'x' is not defined
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Function scope</h3>
+        <pre class="brush: python">
+def print_double(x):
+    ##############
+    # function scope
+    y = x * 2
+    print(y)  # x and y no longer exist after this statement
+    ##############
+    
+print_double(3)
+print(x)  # crash - 'x' is not defined
+print(y)  # crash - 'y' is not defined
+        </pre>
+    </section>
+    
+    <section>
+        <h3>Function scope</h3>
+        <pre class="brush: python">
+def print_double(i):
+    ##############
+    # function scope
+    # Changing this i has no effect on other i.
+    # This i has function scope and is destroyed
+    # after the function call is finished.
+    i *= 2
+    print(i)
+    ###############
+i = 0
+while i < 10:
+    print_double(i)  # 0, 2, 4, ..., 16, 18
+    i += 1
+
+print("i after while loop is", i)  # 10
+        </pre>
+        <ul>
+            <li><i>i</i> is the name of two separate variables</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Global scope</h3>
+        <pre class="brush: python">
+def print_double():
+    ##############
+    # function scope
+    # Changing this i actually changes the other i.
+    global i
+    i *= 2
+    print(i)
+    ##############
+    
+##############
+# global scope
+i = 0
+while i < 10:
+    print_double()  # 0, 2, 6, 14
+    i += 1
+
+print("i after while loop is", i)  # 15
+##############
+        </pre>
+        <ul>
+            <li><i>global</i> keyword is applied to a module scope variable to allow its mutation in local context</li>
+            <li>global variables can be really useful</li>
+            <li>but they can make code much harder to reason about</li>
+            <li>much more state must be remebered and considered when using globals</li>
+            <li>order of function calls matter</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Global scope</h3>
+        <pre class="brush: python">
+def print_double():
+    ##############
+    # function scope
+    # Changing this i actually changes the other i.
+    global i  # name 'i' is not defined
+    i *= 2
+    print(i)
+    ##############
+
+def print_doubles():    
+    ##############
+    # function scope
+    i = 0
+    while i < 10:
+        print_double()  # 0, 2, 6, 14
+        i += 1
+
+    print("i after while loop is", i)  # 15
+    ##############
+
+##############
+# global scope
+print_doubles()
+##############
+        </pre>
+        <ul>
+            <li><i>i</i> is no longer at global scope</li>
+        </ul>
+    </section>
+    
+    <section id="modules">
+        <h3>Modules</h3>
+        <ul>
+            <li>a file containing a collection of related functions and objects </li>
+            <li>any file can import a module</li>
+            <li>when a file is imported, functions in that module can be used</li>
+            <li>the set of modules that come with Python by default is the "standard library"</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Modules</h3>
+        <pre class="brush: python">
+import sys
+
+print(sys.path)
+        </pre>
+        <ul>
+            <li><i>import</i> keyword followed by the name of the module</li>
+            <li>the <i>sys</i> module "provides access to some variables used or maintained by the interpreter and to functions that interact strongly with the interpreter"<odules</li>
+            <li>the <i>sys.path</i> property is "a list of strings that specifies the search path for modules. Initialized from the environment variable PYTHONPATH, plus an installation-dependent default."</ us
+            <li>small, commonly used functions like <i>len</i> are built-in</li>
+            <li>built-in functions don't require importing modules</li>y"</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Modules</h3>
+        <pre class="brush: python">
+import random
+
+print(random.randint(0,10))
+        </pre>
+        <ul>
+            <li>there are lots of useful modules available</li>
+            <li>https://docs.python.org/3/library/</li>
+            <li>remember, module name precedes function name</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Modules</h3>
+        <pre class="brush: python">
+def cm_to_inches(cm):
+    return cm * 0.393
+    
+def kg_to_pounds(kg):
+    return kg * 2.204
+        </pre>
+        <ul>
+            <li>we can create our own modules</li>   <ul>
+            <li>save c"ode as metric_imperial_conversions.py"</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Modules</h3>
+        <pre class="brush: python">
+import metric_imperial_conversions
+
+print(metric_imperial_conversions.cm_to_inches(10))
+        </pre>
+        <ul>
+            <li>create new file in same directory</li>
+            <li>import and call functions from "metric_imperial_conversions.py"in a separate file</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Modules</h3>
+        <pre class="brush: python">
+import metric_imperial_conversions as convert
+
+print(convert.cm_to_inches(10))
+        </pre>
+        <ul>
+            <li>shorten name for more readable code</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Modules</h3>
+        <pre class="brush: python">
+from metric_imperial_conversions import cm_to_inches
+
+# works as desired
+print(cm_to_inches(10))
+
+# crash - name 'kg_to_pounds' is not defined
+print(kg_to_pounds(10))
+
+# crash - name 'metric_imperial_conversions' is not defined
+print(metric_imperial_conversions.cm_to_inches(10))
+        </pre>
+        <ul>
+            <li>only import specified functions</li>
+            <li>useful for avoiding name conflicts or minimizing memory footprint</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Document strings</h3>
+        <pre class="brush: python">
+"""Convert from metric to imperial and back for distance and weights.
+"""
+
+def cm_to_inches(cm):
+    """Converts centimeters to inches."""
+    return cm * 0.393
+    
+def kg_to_pounds(kg):
+    """Converts kilograms to pounds."""
+    return kg * 2.204
+        </pre>
+        <ul>
+            <li>document strings are used to document modules and functions</li>
+            <li>document string more commonly called "docstring"</li>
+            <li>let's imagine this module has lots of functions</li>
+            <li>PEP8 specifies following PEP257 docstring format</li>
+            <li>use Python interpreter and "help" to see documentation</li>
+            <li>HTML documentation can be generated from docstrings</li>
+        </ul>
+    </section>
+    
+    <section id="main">
+        <h3>the main function</h3>
+        <pre class="brush: python">
+def main():
+    print("In main function")
+
+if __name__ == "__main__":
+    main()
+        </pre>
+        <ul>
+            <li><i>__name__</i> is a special global variable in Python</li>
+            <li>if a script is executed directly, <i>__name__</i> is <i>__main__</i></li>
+            <li>ensures that only YOUR main function is executed</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>the main function</h3>
+        <pre class="brush: python">
+import random
+
+print(__name__) # __main__
+print(random.__name__) # random
+        </pre>
+        <ul>
+            <li>if a script is imported, <i>__name__</i> is the name of that script/module</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>the main function</h3>
+        <pre class="brush: python">
+def main():
+    print("In main function")
+
+if __name__ == "__main__":
+    main()
+        </pre>
+        <ul>
+            <li>all code in imported module is executed</li>
+            <li>this could mean simply importing a module executes prints etc.</li>
+            <li>executing code other than function definitions is considered bad practice</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>the main function</h3>
+        <pre class="brush: python">
+import sys
+
+def main(argv):
+    # consider using argparse module
+    print(argv)
+
+if __name__ == "__main__":
+    main(sys.argv)
+        </pre>
+        <ul>
+            <li>main function often used to take command line arguments</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>the main function</h3>
+        <pre class="brush: python">
+def add(x, y):
+    return x + y
+
+def main():
+    sum = add(2, 3)
+    print("sum is", sum)
+
+if __name__ == "__main__":
+    main()
+        </pre>
+        <ul>
+            <li>code in main is executed as per usu
+            <li>use the main function in all future scripts</li>al</li>
+        </ul>
+    </section>
+
+    <section id="procedure-exercises">
+        <h3>Procedure exercise 1</h3>
+        <div class="exercize_text">
+            Define and call a procedure with no parameters that adds 2 and 3 and prints the result.
+        </div>
+    </section>
+
+    <section>
+        <h3>Procedure ex2rcise 3</h3>
+        <div class="exercize_text">
+            Write a program to print the square of any number the user inputs. The number to be squared should be a parameter to the "print_square" procedure.
+        </div>
+    </section>
+
+    <section>
+        <h3>Procedure ex3rcise 4</h3>
+        <div class="exercize_text">
+             Use a procedure with two parameters that tells the user if the first or second parameter is the biggest of the two, or if they're equal in size.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Procedure ex4rcise 5</h3>
+        <div class="exercize_text">
+             Write a procedure that prints the absolute value of any number passed as an argument.
+        </div>
+    </section>
+
+    <section>
+        <h3>Procedure exercise 5</h3>
+        <div class="exercize_text">
+            Print the count down for a rocket launch starting at 100.
+        </div>
+    </section>
+
+    <section id="function-exercises">
+        <h3>Function exercise 1</h3>
+        <div class="exercize_text">
+             Write a function that takes two integers as input. The function should return the largest of the two integers. If the integers are the same, return the first argument.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Function exercise 2</h3>
+        <div class="exercize_text">
+             Write a function that converts centimeters to inches. Lookup conversion kipedia if you don't know it.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Function exercise 3</h3>
+        <div class="exercize_text">
+             Write a function that converts kilograms to pounds.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Function ex4rcise 5</h3>
+        <div class="exercize_text">
+             Create a function <i>calculate_bmi_metric(weight_kg, height_meters)</i> that returns the BMI of the user input it receives. Write another function <i>find_bmi_category(bmi)</i> that takes a BMI as input and returns the weight category for that BMI e.g. "underweight". Write a procedure, <i>display_bmi_metric(weight_kg, height_meters)</i>, to display all information regarding BMI. Both <i>calculate_bmi_metric</i> and <i>find_bmi_category</i> should be called from within <i>display_bmi_metric</i>.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Function ex5rcise 6</h3>
+        <div class="exercize_text">
+             Build upon the previous program to create a function <i>calculate_bmi_imperial(weight_pounds, height_inches)</i> and a procedure <i>display_bmi_imperial(weight_pounds, height_inches)</i>. Give the user the option of using either metric or imperial measurements. Let the user also enter their own height and weight.
+        </div>
+    </section>
+
+    <section>
+        <h3>Function exercise 6</h3>
+        <div class="exercize_text">
+             Create a function that returns the lowest value in a list.
+        </div>
+    </section>
+    
+    <section>
+        <h3>Function exercise 7</h3>
+        <div class="exercize_text">
+             Create a function that tests if a number is in a list.
+        </div>
+    </section>
+
+    <section>
+        <h3>Function exercise 8</h3>
+        <div class="exercize_text">
+             Create a function that counts the number of words in a string. Assume the string contains only words separated by one whitespace character.
+        </div>
+    </section>
+    
+       <section>
+        <h3>Function exercise 9</h3>
+        <div class="exercize_text">
+             Create a function that reverses the text of a string.
+        </div>
+    </section>
+
+    <section>
+        <h3>Function exercise 10</h3>
+        <div class="exercize_text">
+             Create a <i>user_defined_range</i> function that takes exactly three arguments (start, stop, step) and returns the appropriate list. Don't use the built-in <i>range</i> function inside the <i>user_defined_range</i> function. The function only needs to work for ascending numbers (positive step).
+        </div>
+    </section>
+    
+    <section>
+        <h3>Function exercise 11</h3>
+        <div class="exercize_text">
+             Create a function that tests if a number is in a list of lists.
+        </div>
+    </section>
+                
+    <section id="more-exercises">
+        <h3>If you've finished everything</h3>
+        <ul>
+            <li><a href="http://projecteuler.net/problems">number-based problems for computing</a></li>
+            <li><a href="http://rosalind.info/problems/list-view/">string-based problems for computing</a></li>
+        </ul>
+    </section>
+    
+</div> <!-- slides -->
+</div> <!-- reveal.js -->
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

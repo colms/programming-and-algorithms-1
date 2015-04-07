@@ -1,0 +1,5 @@
+Note that this is Python 2.7 but there differences are minor:
+A Byte of Python:
+http://www.swaroopch.com/notes/python/
+
+Robert Sedgewick (1997), Algorithms in C, Parts 1 4: Fundamentals, Data Structures, Sorting, Searching (3rd Edition),Addison Wesley
